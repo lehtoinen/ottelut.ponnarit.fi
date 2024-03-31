@@ -1,0 +1,26 @@
+---
+import { getAllMatchesForClub } from "../api/torneoPal";
+
+import Layout from '../layouts/Layout.astro';
+import FixtureList from '../components/FixtureList.astro';
+
+const matches = await getAllMatchesForClub();
+---
+
+<Layout title="Ottelut - Helsingin Ponnistus">
+  <main>
+    <FixtureList fixtures={matches} />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import type { Match } from "../types/Match";
+
+import DateBadge from "./DateBadge.astro";
+
+type Props = {
+  fixture: Match;
+};
+
+const { fixture } = Astro.props;
+const {
+  date,
+  time,
+  isCompleted,
+  competition,
+  venue,
+  city,
+  homeTeam,
+  homeScore = 0,
+  awayTeam,
+  awayScore = 0,
+} = fixture;
+
+const timeStr = time.slice(0, time.length - 3);
+---
+
+<div>
+  <DateBadge date={date} isCompleted={isCompleted} />
+  <div>
+    <span> {competition}:</span>
+    <span>
+      {
+        homeTeam
+      }
+      {homeScore}
+    </span>{" "}
+    -{" "}
+    <span>
+      {awayScore}
+      {
+        awayTeam
+      }
+    </span>
+  </div>
+  <div>
+    klo {timeStr}{" "}
+    <span>
+      {venue}
+      {city ? `, ${city}` : ""}
+    </span>
+  </div>
+  <br />
+</div>

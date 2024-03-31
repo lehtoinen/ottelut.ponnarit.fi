@@ -1,0 +1,19 @@
+---
+import { isValid } from "date-fns";
+
+import type { Match } from '../types/Match';
+
+import Fixture from "./Fixture.astro";
+
+type Props = {
+  fixtures: Match[];
+};
+
+const { fixtures } = Astro.props;
+---
+
+{
+  fixtures
+    .filter(({ date }) => isValid(date))
+    .map((fixture) => <Fixture fixture={fixture} />)
+}
