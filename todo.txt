@@ -1,18 +1,53 @@
-[ ] all fixtures as a list
+[X] all fixtures as a list
     - date
     - teams
     - location
+
 [ ] upcoming only -filter
     - hide all finished fixtures (date or finished info in data?)
+
 [ ] results for finished fixtures
     - display goals for teams when available
+
 [ ] team filters
     - create a checkbox list of all teams
     - display only fixtures for teams
-[ ] group teams in filters
-    - top level: adults, children, old boys, men, women? (need to see what's available)
-    - second level: age group, if more than one team
+
+[ ] group teams in filters by category
+    - "Tytöt", "Pojat", "Naiset", "Miehet" -- match.category_group_name
+    
+[ ] group teams in filters by age group
+    - if more than one team in age group -- match.age_group, match.category_name
+
+[ ] add styles to app
+
+---------- V1.0 ----------
+
+[ ] group dates in fixture list
+    - group matches with matching dates under one date badge in the fixture list
+
+[ ] add print option to fixture list
+    - add a "print" button
+    - add print styles -- how to test that these won't  get broken
+    - prints list with current filter options
+
 [ ] link to tulospalvelu fixtures
     - each fixture has a link to the corresponding fixture in tulospalvelu
+
 [ ] link to tulospalvelu league table
     - each fixture (or team?) has a link to the corresponding league table in tulospalvelu
+
+[ ] add calendar view
+
+[ ] add print option to calendar
+    - add a "print" button
+    - add print styles -- how to test that these won't  get broken
+    - prints currently selected month with current filter options
+
+[ ] group fixtures in fixture list my month
+    - add separators with month names..?
+
+[ ] support for multiple competitions
+
+[ ] add language versions
+    - en, sv?, es?
