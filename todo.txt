@@ -1,0 +1,18 @@
+[ ] all fixtures as a list
+    - date
+    - teams
+    - location
+[ ] upcoming only -filter
+    - hide all finished fixtures (date or finished info in data?)
+[ ] results for finished fixtures
+    - display goals for teams when available
+[ ] team filters
+    - create a checkbox list of all teams
+    - display only fixtures for teams
+[ ] group teams in filters
+    - top level: adults, children, old boys, men, women? (need to see what's available)
+    - second level: age group, if more than one team
+[ ] link to tulospalvelu fixtures
+    - each fixture has a link to the corresponding fixture in tulospalvelu
+[ ] link to tulospalvelu league table
+    - each fixture (or team?) has a link to the corresponding league table in tulospalvelu
