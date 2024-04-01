@@ -32,8 +32,8 @@ Required keys and configuration are defined as env variables:
 You add env vars via an `.env` file in the project root. Example:
 
 ```
-TORNEOPAL_API_KEY=
-TORNEOPAL_CLUB_ID=
-TORNEOPAL_COMPETITION_ID=
+TORNEOPAL_API_KEY=abcde12345
+TORNEOPAL_CLUB_ID=79
+TORNEOPAL_COMPETITION_ID=etejp24
 MOCK_TORNEOPAL_REQUESTS=false
 ```
