@@ -1,19 +1,87 @@
 ---
 import { isValid } from "date-fns";
 
-import type { Match } from '../types/Match';
+import { getAllMatchesForClub, getAllTeamsForClub } from "../api/torneoPal";
 
 import Fixture from "./Fixture.astro";
 
-type Props = {
-  fixtures: Match[];
-};
-
-const { fixtures } = Astro.props;
+const teams = await getAllTeamsForClub();
+const matches = await getAllMatchesForClub();
 ---
 
-{
-  fixtures
-    .filter(({ date }) => isValid(date))
-    .map((fixture) => <Fixture fixture={fixture} />)
-}
+<fixture-list style="display: flex; gap: 30px">
+  <div>
+    {teams
+      .map((team) => 
+      <div>
+        <input type="checkbox" data-filter-checkbox id={team.id} name={`${team.ageGroup}-${team.name}`} />
+        <label for={team.id}>{team.primaryCategoryName}-{team.name}</label>
+      </div>
+    )}
+  </div>
+  <div>
+    {matches
+      .filter(({ date }) => isValid(date))
+      .map((match) => {
+        const teamId = teams.find((team) => [match.homeTeamId, match.awayTeamId].includes(team.id))?.id;
+        
+        return (
+          <div data-team-id={teamId}>
+            <Fixture fixture={match} />
+          </div>
+        );
+      }
+    )}
+  </div>
+</fixture-list>
+
+<script>
+  import { getTeamFilterState, setTeamFilterState } from "../state/teamFilterState";
+
+  class FixtureList extends HTMLElement {
+    constructor() {
+      super();
+
+      const checkboxes = this.querySelectorAll('input');
+
+      const init = () => {
+        const filterState = getTeamFilterState();
+        checkboxes.forEach(checkbox => checkbox.checked = filterState[checkbox.id]);
+        
+        updateFixtureList();
+      }
+
+      const toggleAllFixtures = (visible: boolean) => {
+        const allFixtures = this.querySelectorAll('[data-team-id]') as NodeListOf<HTMLElement>;
+        allFixtures.forEach(fixture => fixture.style.display = visible ? "" : "none");
+      }
+
+      const updateFixtureList = () => {
+        const filterState = getTeamFilterState();
+
+        if (Object.values(filterState).every(value => !value)) {
+          toggleAllFixtures(true);
+          return;
+        }
+
+        toggleAllFixtures(false);
+
+        Object.entries(filterState).forEach(([key, value]) => {
+          if (!value) return;
+
+          const teamFixtures = this.querySelectorAll(`[data-team-id="${key}"]`) as NodeListOf<HTMLElement>;
+          teamFixtures.forEach(fixture => fixture.style.display = "");
+        });
+      }
+      
+      checkboxes.forEach(checkbox => checkbox.addEventListener('click', () => {
+        setTeamFilterState({ ...getTeamFilterState(), [checkbox.id]: checkbox.checked });
+        updateFixtureList();
+      }));
+
+      init();
+    }
+  }
+
+  customElements.define('fixture-list', FixtureList);
+</script>
