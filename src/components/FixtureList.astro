@@ -47,7 +47,6 @@ const matches = await getAllMatchesForClub();
       const init = () => {
         const filterState = getTeamFilterState();
         checkboxes.forEach(checkbox => checkbox.checked = filterState[checkbox.id]);
-        
         updateFixtureList();
       }
 
@@ -65,7 +64,6 @@ const matches = await getAllMatchesForClub();
         }
 
         toggleAllFixtures(false);
-
         Object.entries(filterState).forEach(([key, value]) => {
           if (!value) return;
 
