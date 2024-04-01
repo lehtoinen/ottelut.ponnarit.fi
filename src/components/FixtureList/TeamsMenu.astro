@@ -1,0 +1,19 @@
+---
+import type { Team } from '../../types/Team';
+
+type Props = {
+  teams: Team[];
+};
+
+const { teams } = Astro.props;
+---
+
+<div>
+  {teams
+    .map((team) => 
+      <div>
+        <input type="checkbox" data-filter-checkbox id={team.id} name={`${team.ageGroup}-${team.name}`} />
+        <label for={team.id}>{team.primaryCategoryName}-{team.name}</label>
+      </div>
+  )}
+</div>
