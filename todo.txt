@@ -12,18 +12,18 @@
 [ ] group teams in filters by category
     - "Tytöt", "Pojat", "Naiset", "Miehet" -- match.category_group_name
 
-[ ] results for finished fixtures
-    - display goals for teams when available
-
-[ ] upcoming only -filter
-    - hide all finished fixtures (date or finished info in data?)
-    
 [ ] group teams in filters by age group
     - if more than one team in age group -- match.age_group, match.category_name
 
-[ ] add styles to app
+[ ] results for finished fixtures
+    - display goals for teams when available
 
 [ ] setup ci/cd
+
+[ ] add styles to app
+
+[ ] upcoming only -filter
+    - hide all finished fixtures (date or finished info in data?)    
 
 ---------- V1.0 ----------
 
