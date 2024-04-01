@@ -1,8 +1,10 @@
 export type Match = {
   time: string;
   competition: string;
-  homeTeam: string;
-  awayTeam: string;
+  homeTeamId: string;
+  awayTeamId: string;
+  homeTeamName: string;
+  awayTeamName: string;
   isCompleted: boolean;
   venue?: string;
   city?: string;

@@ -15,39 +15,37 @@ const {
   competition,
   venue,
   city,
-  homeTeam,
+  homeTeamName,
   homeScore = 0,
-  awayTeam,
+  awayTeamName,
   awayScore = 0,
 } = fixture;
 
 const timeStr = time.slice(0, time.length - 3);
 ---
 
+<DateBadge date={date} isCompleted={isCompleted} />
 <div>
-  <DateBadge date={date} isCompleted={isCompleted} />
-  <div>
-    <span> {competition}:</span>
-    <span>
-      {
-        homeTeam
-      }
-      {homeScore}
-    </span>{" "}
-    -{" "}
-    <span>
-      {awayScore}
-      {
-        awayTeam
-      }
-    </span>
-  </div>
-  <div>
-    klo {timeStr}{" "}
-    <span>
-      {venue}
-      {city ? `, ${city}` : ""}
-    </span>
-  </div>
-  <br />
+  <span> {competition}:</span>
+  <span>
+    {
+      homeTeamName
+    }
+    {homeScore}
+  </span>{" "}
+  -{" "}
+  <span>
+    {awayScore}
+    {
+      awayTeamName
+    }
+  </span>
 </div>
+<div>
+  klo {timeStr}{" "}
+  <span>
+    {venue}
+    {city ? `, ${city}` : ""}
+  </span>
+</div>
+<br />

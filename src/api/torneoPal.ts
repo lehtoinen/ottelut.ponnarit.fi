@@ -1,9 +1,13 @@
 import { memoizeWith } from "ramda";
 
+import type { ClubResponse } from "../types/torneoPal/ClubResponse";
 import type { MatchesResponse } from "../types/torneoPal/MatchesResponse";
 
-import mockClubMatchesResponse from "../test/fixtures/clubMatchesResponse.json";
 import getFixturesFromMatchesResponse from "../utils/getFixturesFromMatchesResponse";
+import getTeamsFromClubResponse from "../utils/getTeamsFromClubResponse";
+
+import mockClubResponse from "../test/fixtures/clubResponse.json";
+import mockClubMatchesResponse from "../test/fixtures/clubMatchesResponse.json";
 
 const {
   TORNEOPAL_API_KEY,
@@ -11,6 +15,9 @@ const {
   TORNEOPAL_COMPETITION_ID,
   MOCK_TORNEOPAL_REQUESTS,
 } = import.meta.env;
+
+export const getAllTeamsForClub = async () =>
+  getTeamsFromClubResponse(await fetchClub());
 
 export const getAllMatchesForClub = async () =>
   getFixturesFromMatchesResponse(await fetchAllMatchesForClub());
@@ -30,6 +37,12 @@ const sendRequest = memoizeWith(
     return response.json();
   }
 );
+
+const fetchClub = async (): Promise<ClubResponse> =>
+  sendRequest(
+    `/taso/rest/getClub/?api_key=${TORNEOPAL_API_KEY}&club_id=${TORNEOPAL_CLUB_ID}&competition_id=${TORNEOPAL_COMPETITION_ID}`,
+    mockClubResponse
+  );
 
 const fetchAllMatchesForClub = async (): Promise<MatchesResponse> =>
   sendRequest(
