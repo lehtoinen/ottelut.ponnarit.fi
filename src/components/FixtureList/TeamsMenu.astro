@@ -1,19 +1,44 @@
 ---
+import { groupBy } from 'ramda';
 import type { Team } from '../../types/Team';
 
 type Props = {
   teams: Team[];
 };
 
+const categoryMap: Record<string, string> = {
+  "M": "Miehet",
+  "N": "Naiset",
+  "P": "Pojat",
+  "T": "Tytöt",
+};
+
 const { teams } = Astro.props;
+const groupTeamsByCategory = groupBy((team: Team) => {
+  const prefix = team.ageGroup.charAt(0);
+  return categoryMap[prefix] ?? 'unknown';
+});
+
+const teamsByCategory = groupTeamsByCategory(teams);
+
+console.log(Object.values(teamsByCategory).map(teams => teams?.map(team => team.ageGroup)))
 ---
 
 <div>
-  {teams
-    .map((team) => 
+  {Object.entries(teamsByCategory).map(([group, teams = []]) => {
+    if (teams.length === 0) return;
+
+    return (
       <div>
-        <input type="checkbox" data-filter-checkbox id={team.id} name={`${team.ageGroup}-${team.name}`} />
-        <label for={team.id}>{team.primaryCategoryName}-{team.name}</label>
+        <h3>{group}</h3>
+        {teams
+          .map((team) => 
+            <div>
+              <input type="checkbox" data-filter-checkbox id={team.id} name={`${team.ageGroup}-${team.name}`} />
+              <label for={team.id}>{team.primaryCategoryName}-{team.name}</label>
+            </div>
+        )}
       </div>
-  )}
+    )
+  })}
 </div>
