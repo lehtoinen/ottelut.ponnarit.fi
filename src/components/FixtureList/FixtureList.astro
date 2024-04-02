@@ -44,7 +44,7 @@ const matches = await getAllMatchesForClub();
       }
 
       const toggleAllFixtures = (visible: boolean) => {
-        const allFixtures = this.querySelectorAll('[data-team-id]') as NodeListOf<HTMLElement>;
+        const allFixtures: NodeListOf<HTMLElement> = this.querySelectorAll('[data-team-id]');
         allFixtures.forEach(fixture => fixture.style.display = visible ? "" : "none");
       }
 
@@ -60,7 +60,7 @@ const matches = await getAllMatchesForClub();
         Object.entries(filterState).forEach(([key, value]) => {
           if (!value) return;
 
-          const teamFixtures = this.querySelectorAll(`[data-team-id="${key}"]`) as NodeListOf<HTMLElement>;
+          const teamFixtures: NodeListOf<HTMLElement> = this.querySelectorAll(`[data-team-id="${key}"]`);
           teamFixtures.forEach(fixture => fixture.style.display = "");
         });
       }
