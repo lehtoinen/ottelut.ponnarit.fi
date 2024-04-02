@@ -24,28 +24,29 @@ const {
 const timeStr = time.slice(0, time.length - 3);
 ---
 
-<DateBadge date={date} isCompleted={isCompleted} />
-<div>
-  <span> {competition}:</span>
-  <span>
-    {
-      homeTeamName
-    }
-    {homeScore}
-  </span>{" "}
-  -{" "}
-  <span>
-    {awayScore}
-    {
-      awayTeamName
-    }
-  </span>
+<div style="display: flex; gap: 20px; margin-bottom: 10px;">
+  <DateBadge date={date} isCompleted={isCompleted} />
+  <div>
+    <div>
+      {competition}:
+      {
+        homeTeamName
+      }
+      {homeScore}
+    </span>{" "}
+    -{" "}
+    <span>
+      {awayScore}
+      {
+        awayTeamName
+      }
+    </div>
+    <div>
+      klo {timeStr}{" "}
+      <span>
+        {venue}
+        {city ? `, ${city}` : ""}
+      </span>
+    </div>
+  </div>
 </div>
-<div>
-  klo {timeStr}{" "}
-  <span>
-    {venue}
-    {city ? `, ${city}` : ""}
-  </span>
-</div>
-<br />
