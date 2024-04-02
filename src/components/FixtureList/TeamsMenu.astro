@@ -1,6 +1,10 @@
 ---
 import { groupBy } from 'ramda';
+
 import type { Team } from '../../types/Team';
+
+import CollapsibleContainer from './CollapsibleContainer.astro';
+import TeamCheckbox from './TeamCheckbox.astro';
 
 type Props = {
   teams: Team[];
@@ -20,25 +24,39 @@ const groupTeamsByCategory = groupBy((team: Team) => {
 });
 
 const teamsByCategory = groupTeamsByCategory(teams);
-
-console.log(Object.values(teamsByCategory).map(teams => teams?.map(team => team.ageGroup)))
 ---
 
 <div>
-  {Object.entries(teamsByCategory).map(([group, teams = []]) => {
-    if (teams.length === 0) return;
-
+  {Object.entries(teamsByCategory).map(([category, teamsInCategory = []]) => {
+    if (teamsInCategory.length === 0) return;
+    
+    const categoryHeading = <strong>{category}</strong>;
+    
+    if (teamsInCategory.length < 10) {
+      return (
+        <CollapsibleContainer heading={categoryHeading}>
+          {teamsInCategory.map((team) => <TeamCheckbox team={team} />)}
+        </CollapsibleContainer>
+      );
+    };
+        
+    const teamsByAgeGroup = groupBy((team: Team) => team.ageGroup)(teamsInCategory);
+    
     return (
-      <div>
-        <h3>{group}</h3>
-        {teams
-          .map((team) => 
-            <div>
-              <input type="checkbox" data-filter-checkbox id={team.id} name={`${team.ageGroup}-${team.name}`} />
-              <label for={team.id}>{team.primaryCategoryName}-{team.name}</label>
-            </div>
-        )}
-      </div>
-    )
+      <CollapsibleContainer heading={categoryHeading}>
+        {Object.entries(teamsByAgeGroup).map(([ageGroup, teamsInAgeGroup]) => {
+          if (!teamsInAgeGroup) return;
+          if (teamsInAgeGroup.length === 1) return <TeamCheckbox team={teamsInAgeGroup[0]} />;
+
+          const groupHeading = <div>{ageGroup}</div>;
+
+          return (
+            <CollapsibleContainer heading={groupHeading}>
+              {teamsInAgeGroup.map((team) => <TeamCheckbox team={team} />)}
+            </CollapsibleContainer>
+          );
+        })}
+      </CollapsibleContainer>
+    );
   })}
 </div>
