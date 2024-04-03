@@ -30,19 +30,15 @@ const timeStr = time.slice(0, time.length - 3);
     <div>
       {competition}:
       {homeTeamName}
-      {homeScore}
-    </div>{" "}
-    -{" "}
-    <span>
-      {awayScore}
+      {homeScore} - {awayScore}
       {awayTeamName}
-    </span>
-    <div>
-      klo {timeStr}{" "}
-      <span>
-        {venue}
-        {city ? `, ${city}` : ""}
-      </span>
+      <div>
+        klo {timeStr}{" "}
+        <span>
+          {venue}
+          {city ? `, ${city}` : ""}
+        </span>
+      </div>
     </div>
   </div>
 </div>
