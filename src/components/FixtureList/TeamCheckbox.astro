@@ -1,5 +1,5 @@
 ---
-import type { Team } from '../../types/Team'
+import type { Team } from "../../types/Team";
 
 type Props = {
   team: Team;
@@ -9,6 +9,13 @@ const { team } = Astro.props;
 ---
 
 <div>
-  <input type="checkbox" data-filter-team id={team.id} name={`${team.ageGroup}-${team.name}`} />
-  <label style="cursor: pointer;" for={team.id}>{team.name} ({team.ageGroup})</label>
+  <input
+    type="checkbox"
+    data-filter-team
+    id={team.id}
+    name={`${team.ageGroup}-${team.name}`}
+  />
+  <label style="cursor: pointer;" for={team.id}
+    >{team.name} ({team.ageGroup})</label
+  >
 </div>

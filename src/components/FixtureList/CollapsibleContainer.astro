@@ -2,7 +2,7 @@
 type Props = {
   heading: HTMLElement;
   isOpen?: boolean;
-}
+};
 
 const { heading, isOpen = false } = Astro.props;
 ---
@@ -18,32 +18,34 @@ const { heading, isOpen = false } = Astro.props;
   </div>
 </collapsible-container>
 
-
 <script>
   class CollapsibleContainer extends HTMLElement {
     constructor() {
       super();
-      
-      const heading: HTMLElement | null = this.querySelector('[data-heading]')
-      const children: HTMLElement | null = this.querySelector('[data-children]')
-      const iconOpen: HTMLElement | null = this.querySelector('[data-icon-open]')
-      const iconClose: HTMLElement | null = this.querySelector('[data-icon-close]')
-      
+
+      const heading: HTMLElement | null = this.querySelector("[data-heading]");
+      const children: HTMLElement | null =
+        this.querySelector("[data-children]");
+      const iconOpen: HTMLElement | null =
+        this.querySelector("[data-icon-open]");
+      const iconClose: HTMLElement | null =
+        this.querySelector("[data-icon-close]");
+
       let isOpen = children?.style.display !== "none";
 
       const toggleCollapse = () => {
         isOpen = !isOpen;
 
         if (children) children.style.display = isOpen ? "" : "none";
-        if (iconClose) iconClose.style.display = isOpen ? "" : "none"
-        if (iconOpen) iconOpen.style.display = !isOpen ? "" : "none"
-      }
+        if (iconClose) iconClose.style.display = isOpen ? "" : "none";
+        if (iconOpen) iconOpen.style.display = !isOpen ? "" : "none";
+      };
 
-      heading?.addEventListener('click', toggleCollapse);
-      iconOpen?.addEventListener('click', toggleCollapse);
-      iconClose?.addEventListener('click', toggleCollapse);
+      heading?.addEventListener("click", toggleCollapse);
+      iconOpen?.addEventListener("click", toggleCollapse);
+      iconClose?.addEventListener("click", toggleCollapse);
     }
   }
 
-  customElements.define('collapsible-container', CollapsibleContainer);
+  customElements.define("collapsible-container", CollapsibleContainer);
 </script>
