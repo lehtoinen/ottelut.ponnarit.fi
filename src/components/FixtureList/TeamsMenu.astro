@@ -26,7 +26,7 @@ const groupTeamsByCategory = groupBy((team: Team) => {
 const teamsByCategory = groupTeamsByCategory(teams);
 ---
 
-<div>
+<div style="min-width: 260px;">
   {Object.entries(teamsByCategory).map(([category, teamsInCategory = []]) => {
     if (teamsInCategory.length === 0) return;
     
