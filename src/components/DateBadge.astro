@@ -10,7 +10,7 @@ type Props = {
 const { date, isCompleted } = Astro.props;
 
 const weekday = format(date, "EEEEEE", { locale: fi });
-const dateStr = format(date, "dd.MM");
+const dateStr = format(date, "d.M.");
 ---
 
 <div>
