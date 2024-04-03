@@ -1,62 +1,73 @@
 ---
-import { groupBy } from 'ramda';
+import { groupBy } from "ramda";
 
-import type { Team } from '../../types/Team';
+import type { Team } from "../../types/Team";
 
-import CollapsibleContainer from './CollapsibleContainer.astro';
-import TeamCheckbox from './TeamCheckbox.astro';
+import CollapsibleContainer from "./CollapsibleContainer.astro";
+import TeamCheckbox from "./TeamCheckbox.astro";
 
 type Props = {
   teams: Team[];
 };
 
 const categoryMap: Record<string, string> = {
-  "M": "Miehet",
-  "N": "Naiset",
-  "P": "Pojat",
-  "T": "Tytöt",
+  M: "Miehet",
+  N: "Naiset",
+  P: "Pojat",
+  T: "Tytöt",
 };
 
 const { teams } = Astro.props;
 const groupTeamsByCategory = groupBy((team: Team) => {
   const prefix = team.ageGroup.charAt(0);
-  return categoryMap[prefix] ?? 'unknown';
+  return categoryMap[prefix] ?? "unknown";
 });
 
 const teamsByCategory = groupTeamsByCategory(teams);
 ---
 
 <div style="min-width: 260px;">
-  {Object.entries(teamsByCategory).map(([category, teamsInCategory = []]) => {
-    if (teamsInCategory.length === 0) return;
-    
-    const categoryHeading = <strong>{category}</strong>;
-    
-    if (teamsInCategory.length < 10) {
+  {
+    Object.entries(teamsByCategory).map(([category, teamsInCategory = []]) => {
+      if (teamsInCategory.length === 0) return;
+
+      const categoryHeading = <strong>{category}</strong>;
+
+      if (teamsInCategory.length < 10) {
+        return (
+          <CollapsibleContainer heading={categoryHeading}>
+            {teamsInCategory.map((team) => (
+              <TeamCheckbox team={team} />
+            ))}
+          </CollapsibleContainer>
+        );
+      }
+
+      const teamsByAgeGroup = groupBy((team: Team) => team.ageGroup)(
+        teamsInCategory
+      );
+
       return (
         <CollapsibleContainer heading={categoryHeading}>
-          {teamsInCategory.map((team) => <TeamCheckbox team={team} />)}
+          {Object.entries(teamsByAgeGroup).map(
+            ([ageGroup, teamsInAgeGroup]) => {
+              if (!teamsInAgeGroup) return;
+              if (teamsInAgeGroup.length === 1)
+                return <TeamCheckbox team={teamsInAgeGroup[0]} />;
+
+              const groupHeading = <div>{ageGroup}</div>;
+
+              return (
+                <CollapsibleContainer heading={groupHeading}>
+                  {teamsInAgeGroup.map((team) => (
+                    <TeamCheckbox team={team} />
+                  ))}
+                </CollapsibleContainer>
+              );
+            }
+          )}
         </CollapsibleContainer>
       );
-    };
-        
-    const teamsByAgeGroup = groupBy((team: Team) => team.ageGroup)(teamsInCategory);
-    
-    return (
-      <CollapsibleContainer heading={categoryHeading}>
-        {Object.entries(teamsByAgeGroup).map(([ageGroup, teamsInAgeGroup]) => {
-          if (!teamsInAgeGroup) return;
-          if (teamsInAgeGroup.length === 1) return <TeamCheckbox team={teamsInAgeGroup[0]} />;
-
-          const groupHeading = <div>{ageGroup}</div>;
-
-          return (
-            <CollapsibleContainer heading={groupHeading}>
-              {teamsInAgeGroup.map((team) => <TeamCheckbox team={team} />)}
-            </CollapsibleContainer>
-          );
-        })}
-      </CollapsibleContainer>
-    );
-  })}
+    })
+  }
 </div>

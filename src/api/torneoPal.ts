@@ -35,17 +35,17 @@ const sendRequest = memoizeWith(
 
     const response = await fetch(url);
     return response.json();
-  }
+  },
 );
 
 const fetchClub = async (): Promise<ClubResponse> =>
   sendRequest(
     `/taso/rest/getClub/?api_key=${TORNEOPAL_API_KEY}&club_id=${TORNEOPAL_CLUB_ID}&competition_id=${TORNEOPAL_COMPETITION_ID}`,
-    mockClubResponse
+    mockClubResponse,
   );
 
 const fetchAllMatchesForClub = async (): Promise<MatchesResponse> =>
   sendRequest(
     `/taso/rest/getMatches/?api_key=${TORNEOPAL_API_KEY}&club_id=${TORNEOPAL_CLUB_ID}&competition_id=${TORNEOPAL_COMPETITION_ID}`,
-    mockClubMatchesResponse
+    mockClubMatchesResponse,
   );

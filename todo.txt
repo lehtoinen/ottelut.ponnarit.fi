@@ -19,6 +19,8 @@
 [X] collapsible team filters
     - category and age group collapsible
 
+[X] set up Prettier
+
 [ ] display selected teams as a list below(?) filters
     - each with a "remove" button (an "X" maybe?)
 
