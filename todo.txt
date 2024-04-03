@@ -9,21 +9,40 @@
     - if none selected, display all fixtures
     - persist selections across sessions (per browser)
 
-[ ] group teams in filters by category
+[X] group teams in filters by category
     - "Tytöt", "Pojat", "Naiset", "Miehet" -- match.category_group_name
 
-[ ] group teams in filters by age group
+[X] group teams in filters by age group
+    - if more than ten teams in category
     - if more than one team in age group -- match.age_group, match.category_name
+
+[X] collapsible team filters
+    - category and age group collapsible
+
+[ ] display selected teams as a list below(?) filters
+    - each with a "remove" button (an "X" maybe?)
+
+[ ] add headings
+    - check accessibility
+
+[ ] add basic styles to app
+
+[ ] add mobile styles
+    - how should the filters work on a narrow viewport?
+
+[ ] setup ci/cd
+
+---------- BETA ----------
+
+[ ] persist collapse states across sessions (per browser)
 
 [ ] results for finished fixtures
     - display goals for teams when available
 
-[ ] setup ci/cd
-
-[ ] add styles to app
-
 [ ] upcoming only -filter
     - hide all finished fixtures (date or finished info in data?)    
+
+[ ] set up domain (ponnarit.fi, setup subdomain ottelut)
 
 ---------- V1.0 ----------
 
