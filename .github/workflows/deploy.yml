@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   schedule:
     - cron: "0 10,22 */1 * *"
   # Allows you to run this workflow manually from the Actions tab on GitHub.
