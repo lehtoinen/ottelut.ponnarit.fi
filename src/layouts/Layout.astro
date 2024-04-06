@@ -1,6 +1,4 @@
 ---
-const { ASTRO_BASE } = import.meta.env;
-
 interface Props {
   title: string;
 }
@@ -14,7 +12,7 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href={`/${ASTRO_BASE}/favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
