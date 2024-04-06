@@ -10,9 +10,10 @@ const teams = await getAllTeamsForClub();
 const matches = await getAllMatchesForClub();
 ---
 
-<fixture-list style="display: flex; gap: 30px">
+<fixture-list>
   <TeamsMenu teams={teams} />
   <div>
+    <h2>Ottelut</h2>
     {
       matches
         .filter(({ date }) => isValid(date))
@@ -97,3 +98,16 @@ const matches = await getAllMatchesForClub();
 
   customElements.define("fixture-list", FixtureList);
 </script>
+
+<style>
+  fixture-list {
+    display: flex;
+    gap: 30px;
+  }
+
+  @media (max-width: 720px) {
+    fixture-list {
+      display: block;
+    }
+  }
+</style>

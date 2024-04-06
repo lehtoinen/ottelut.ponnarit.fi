@@ -1,17 +1,17 @@
 ---
 type Props = {
-  heading: HTMLElement;
+  heading: string;
   isOpen?: boolean;
 };
 
 const { heading, isOpen = false } = Astro.props;
 ---
 
-<collapsible-container style="display: flex; gap: 10px; cursor: pointer;">
+<collapsible-container>
   <div data-icon-close style={`display: ${isOpen ? "" : "none"};`}>▲</div>
   <div data-icon-open style={`display: ${!isOpen ? "" : "none"};`}>▼</div>
   <div>
-    <div data-heading>{heading}</div>
+    <div data-heading set:html={heading} />
     <div data-children style={`display: ${isOpen ? "" : "none"};`}>
       <slot />
     </div>
@@ -49,3 +49,18 @@ const { heading, isOpen = false } = Astro.props;
 
   customElements.define("collapsible-container", CollapsibleContainer);
 </script>
+
+<style>
+  collapsible-container {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    align-items: baseline;
+  }
+
+  [data-icon-open],
+  [data-icon-close] {
+    margin-left: 4px;
+    font-size: 0.8em;
+  }
+</style>

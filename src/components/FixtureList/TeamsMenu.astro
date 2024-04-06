@@ -26,12 +26,13 @@ const groupTeamsByCategory = groupBy((team: Team) => {
 const teamsByCategory = groupTeamsByCategory(teams);
 ---
 
-<div style="min-width: 260px;">
+<div class="teams-menu">
+  <h2>Valitse joukkueet</h2>
   {
     Object.entries(teamsByCategory).map(([category, teamsInCategory = []]) => {
       if (teamsInCategory.length === 0) return;
 
-      const categoryHeading = <strong>{category}</strong>;
+      const categoryHeading = `<strong>${category}</strong>`;
 
       if (teamsInCategory.length < 10) {
         return (
@@ -55,7 +56,7 @@ const teamsByCategory = groupTeamsByCategory(teams);
               if (teamsInAgeGroup.length === 1)
                 return <TeamCheckbox team={teamsInAgeGroup[0]} />;
 
-              const groupHeading = <div>{ageGroup}</div>;
+              const groupHeading = ageGroup;
 
               return (
                 <CollapsibleContainer heading={groupHeading}>
@@ -71,3 +72,9 @@ const teamsByCategory = groupTeamsByCategory(teams);
     })
   }
 </div>
+
+<style>
+  .teams-menu {
+    min-width: 260px;
+  }
+</style>
