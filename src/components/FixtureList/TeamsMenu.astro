@@ -27,6 +27,7 @@ const teamsByCategory = groupTeamsByCategory(teams);
 ---
 
 <div class="teams-menu">
+  <h2>Valitse joukkueet</h2>
   {
     Object.entries(teamsByCategory).map(([category, teamsInCategory = []]) => {
       if (teamsInCategory.length === 0) return;

@@ -1,10 +1,17 @@
 ---
+import { Image } from "astro:assets";
+
 import Layout from "../layouts/Layout.astro";
 import FixtureList from "../components/FixtureList/FixtureList.astro";
+
+import logo from "../img/ponnistus.svg";
 ---
 
-<Layout title="Ottelut - Helsingin Ponnistus">
+<Layout title="Otteluohjelma - Helsingin Ponnistus">
   <main>
+    <h1>
+      <Image src={logo} alt="Helsingin Ponnistus" /> Helsingin Ponnistus
+    </h1>
     <FixtureList />
   </main>
 </Layout>

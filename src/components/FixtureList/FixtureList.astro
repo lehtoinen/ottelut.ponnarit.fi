@@ -13,6 +13,7 @@ const matches = await getAllMatchesForClub();
 <fixture-list>
   <TeamsMenu teams={teams} />
   <div>
+    <h2>Ottelut</h2>
     {
       matches
         .filter(({ date }) => isValid(date))
