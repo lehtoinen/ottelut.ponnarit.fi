@@ -21,22 +21,26 @@
 
 [X] set up Prettier
 
-[ ] display selected teams as a list below(?) filters
-    - each with a "remove" button (an "X" maybe?)
-
-[ ] add headings
+[X] add headings
     - check accessibility
+
+[X] add mobile styles
+    - how should the filters work on a narrow viewport?
+
+[X] setup ci/cd
 
 [ ] add basic styles to app
 
-[ ] add mobile styles
-    - how should the filters work on a narrow viewport?
-
-[ ] setup ci/cd
-
 ---------- BETA ----------
 
+[ ] display selected teams as a list below(?) filters
+    - each with a "remove" button (an "X" maybe?)
+
 [ ] persist collapse states across sessions (per browser)
+
+[ ] set up domain (ponnarit.fi, setup subdomain ottelut)
+
+---------- V1.0 ----------
 
 [ ] results for finished fixtures
     - display goals for teams when available
@@ -44,9 +48,11 @@
 [ ] upcoming only -filter
     - hide all finished fixtures (date or finished info in data?)    
 
-[ ] set up domain (ponnarit.fi, setup subdomain ottelut)
+---------- V1.1 ----------
 
----------- V1.0 ----------
+Backlog:
+
+[ ] accessibility fixes
 
 [ ] group dates in fixture list
     - group matches with matching dates under one date badge in the fixture list
