@@ -12,7 +12,16 @@ const weekday = format(date, "EEEEEE", { locale: fi });
 const dateStr = format(date, "d.M.");
 ---
 
-<div>
-  <div>{weekday}</div>
-  <div>{dateStr}</div>
+<div class="badge">
+  <div>{weekday} {dateStr}</div>
 </div>
+
+<style>
+  .badge {
+    flex-shrink: 0;
+    width: 2.5em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+</style>

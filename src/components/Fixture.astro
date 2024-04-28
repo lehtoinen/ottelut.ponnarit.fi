@@ -23,20 +23,23 @@ const {
 const timeStr = time.slice(0, time.length - 3);
 ---
 
-<div style="display: flex; gap: 20px; margin-bottom: 10px;">
+<div class="fixture">
   <DateBadge date={date} />
   <div>
     <div>
-      {competition}:
+      <div class="details competition">
+        {competition}
+      </div>
       <span class={homeScore > awayScore ? "winner" : ""}>
         {homeTeamName}
+        {homeScore}
       </span>
-      {homeScore} -
-      {awayScore}
+      -
       <span class={homeScore < awayScore ? "winner" : ""}>
+        {awayScore}
         {awayTeamName}
       </span>
-      <div>
+      <div class="details">
         klo {timeStr}{" "}
         <span>
           {venue}
@@ -48,7 +51,32 @@ const timeStr = time.slice(0, time.length - 3);
 </div>
 
 <style>
+  .fixture {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+  }
+
   .winner {
+    font-weight: 700;
+    color: var(--color-light);
+  }
+
+  .details {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+
+    > span {
+      color: #bbb;
+      border-left: 1px solid #655;
+      margin: 0.3em;
+      padding-left: 0.65em;
+    }
+  }
+
+  .competition {
+    color: var(--color-accent);
     font-weight: 700;
   }
 </style>
