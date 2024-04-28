@@ -5,29 +5,51 @@ import { getAllMatchesForClub, getAllTeamsForClub } from "../../api/torneoPal";
 
 import Fixture from "../Fixture.astro";
 import TeamsMenu from "./TeamsMenu.astro";
+import { partition } from "ramda";
+import type { Match } from "../../types/Match";
 
 const teams = await getAllTeamsForClub();
-const matches = await getAllMatchesForClub();
+const matches = (await getAllMatchesForClub()).filter(({ date }) =>
+  isValid(date)
+);
+
+const [completed, upcoming] = partition(
+  ({ isCompleted }) => isCompleted,
+  matches
+);
 ---
 
 <fixture-list>
   <TeamsMenu teams={teams} />
   <div>
     <h2>Ottelut</h2>
+    <h3>Pelatut</h3>
     {
-      matches
-        .filter(({ date }) => isValid(date))
-        .map((match) => {
-          const teamId = teams.find((team) =>
-            [match.homeTeamId, match.awayTeamId].includes(team.id)
-          )?.id;
+      completed.map((match) => {
+        const teamId = teams.find((team) =>
+          [match.homeTeamId, match.awayTeamId].includes(team.id)
+        )?.id;
 
-          return (
-            <div data-team-id={teamId}>
-              <Fixture fixture={match} />
-            </div>
-          );
-        })
+        return (
+          <div data-team-id={teamId}>
+            <Fixture fixture={match} />
+          </div>
+        );
+      })
+    }
+    <h3>Tulevat</h3>
+    {
+      upcoming.map((match) => {
+        const teamId = teams.find((team) =>
+          [match.homeTeamId, match.awayTeamId].includes(team.id)
+        )?.id;
+
+        return (
+          <div data-team-id={teamId}>
+            <Fixture fixture={match} />
+          </div>
+        );
+      })
     }
   </div>
 </fixture-list>
