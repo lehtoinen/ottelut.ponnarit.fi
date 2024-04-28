@@ -29,24 +29,25 @@
 
 [X] setup ci/cd
 
-[ ] add basic styles to app
+[X] add basic styles to app
 
 ---------- BETA ----------
 
-[ ] display selected teams as a list below(?) filters
+[X] results for finished fixtures
+    - display goals for teams when available
+
+[ ] display selected teams as a list above(?) filters
     - each with a "remove" button (an "X" maybe?)
 
 [ ] persist collapse states across sessions (per browser)
 
 [ ] set up domain (ponnarit.fi, setup subdomain ottelut)
 
+[ ] add site meta
+
 ---------- V1.0 ----------
 
-[ ] results for finished fixtures
-    - display goals for teams when available
-
-[ ] upcoming only -filter
-    - hide all finished fixtures (date or finished info in data?)    
+[ ] separate pages for upcoming matches and results
 
 ---------- V1.1 ----------
 
