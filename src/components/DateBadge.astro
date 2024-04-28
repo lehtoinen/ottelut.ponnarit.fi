@@ -4,17 +4,15 @@ import { fi } from "date-fns/locale/fi";
 
 type Props = {
   date: Date;
-  isCompleted: boolean;
 };
 
-const { date, isCompleted } = Astro.props;
+const { date } = Astro.props;
 
 const weekday = format(date, "EEEEEE", { locale: fi });
 const dateStr = format(date, "d.M.");
 ---
 
 <div>
-  <div>{isCompleted ? "Pelattu" : ""}</div>
   <div>{weekday}</div>
   <div>{dateStr}</div>
 </div>
